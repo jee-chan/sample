@@ -1,0 +1,35 @@
+#searchform{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin:34px auto;
+    text-align: center;
+}
+
+p{
+    font-size: 15px;
+    color: rgb(49, 48, 48);
+    padding: 5px;
+    text-align: center;
+}
+
+h2{
+    position: static;
+    height: 40px;
+    margin-top: 34px;
+    margin-left: 130px;
+    /* margin: 10px; */
+}
+
+
+input#searchName {
+  border-radius:10px;
+  box-shadow: grey;
+  padding: 0px 8px;
+}
+
+input#searchEmailAddress {
+  border-radius:10px;
+  box-shadow: grey;
+  padding: 0px 8px;
+}

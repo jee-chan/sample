@@ -1,0 +1,24 @@
+#security:
+#  basic:
+#    enabled: false
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mercari
+    username: postgres
+    password: postgres
+#  http:
+#    multipart:
+#      max-file-size: 1MB
+#      max-request-size: 10MB
+server:
+  servlet:
+    context-path: /Mercari
+logging:
+#  file: C:\env\spring workspace\Mercari\MercariLog\mercari.%d{yyyyMMdd}.log
+  level:
+    org.springframework.web: INFO

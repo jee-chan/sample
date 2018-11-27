@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- css -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+   <!-- script -->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <link rel="stylesheet" th:href="@{/lightbox2-master/src/css/lightbox.css}">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+<title>ItemDetail</title>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{/main/}">Rakus Items</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <div >
+        <ul class="nav navbar-nav navbar-right">
+          <div th:unless="${useraccount}" >
+            <li><a id="logout" th:href="@{/userLogin/}">Login <i class="fa fa-power-off"></i></a></li>
+          </div>
+          <div th:if="${useraccount}" >
+            <li><a id="logout" th:href="@{/logout}">Logout <i class="fa fa-power-off"></i></a></li>
+          </div>
+        </ul>
+        <p class="navbar-text navbar-right">
+        	<div th:unless="${useraccount}" >
+            <span id="loginName">user: Not logged in</span>
+        	</div>
+        	<div th:if="${useraccount}" th:inline="text">
+            <span id="loginName">user: [[${useraccount.username}]]</span>
+        	</div>
+        	
+        </p>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- details -->
+  <div class="container">
+    <a type="button" class="btn btn-default" th:href="@{/main/}"><i class="fa fa-reply}"></i> back</a>
+    <h2>Details</h2>
+    <div id="details">
+      <table class="table table-hover" th:inline="text">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <td>[[${item.id}]]</td>
+          </tr>
+          <tr>
+            <th>name</th>
+            <td>[[${item.name}]]</td>
+          </tr>
+          <tr>
+            <th>price</th>
+            <td>$ [[${item.price}]]</td>
+          </tr>
+          <tr>
+            <th>category</th>
+            <td>
+            	[[${item.bigCategory}]]
+              	<div th:if="${item.cut}" > /</div>
+            	[[${item.middleCategory}]]
+              	<div th:if="${item.cut}" > /</div>
+            	[[${item.smallCategory}]]
+              </td>
+           </tr>
+           <tr>
+              <th>brand</th>
+              <td>[[${item.brand}]]</td>
+           </tr>
+           <tr>
+              <th>condition</th>
+            <td>[[${item.condition}]]</td>
+           </tr>
+          <tr>
+            <th>description</th>
+            <td>[[${item.description}]]</td>
+          </tr>
+        <!-- </tr> --> 
+        　           <tr>
+            <th>picture</th>
+            <td><a th:href="@{/image/itemPictures/${item.picture}}" data-lightbox="itemImage" data-title="${item.name}"><img id="itemImage" th:src="@{/image/itemPictures/${item.picture}}"/></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <a type="button" class="btn btn-default" th:href="@{/editItem/?id=${item.id}}"><i class="fa fa-pencil-square-o"></i>&nbsp;edit</a>
+    </div>
+  </div>
+  <link rel="stylesheet" th:href="@{/css/mercari.css}">
+  <script th:src="@{/lightbox2-master/src/js/lightbox.js}" type="text/javascript"></script>
+
+</body>
+</html>

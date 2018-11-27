@@ -1,0 +1,59 @@
+
+		function formCheck(){
+ 			const bigCategory = document.searchForm.bigCategory.value;
+ 			const middleCategory = document.searchForm.middleCategory.value;
+ 			const smallCategory = document.searchForm.smallCategory.value;
+ 			console.log(bigCategory + "親カテゴリ");
+ 			console.log(middleCategory + "子カテゴリ");
+ 			console.log(smallCategory + "孫カテゴリ");
+ 			if(bigCategory && middleCategory && smallCategory ){
+ 				//全一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/allCategory";
+ 				document.searchForm.submit();
+ 			}
+ // 			親と子のみ入力された場合
+			else if(bigCategory && middleCategory && !smallCategory ){
+ 				//親と子の前方一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/parentAndChild";
+ 				document.searchForm.submit();
+ 			}
+ // 			子と孫のみ入力された場合
+			else if(!bigCategory && middleCategory && smallCategory ){
+				//子と孫の後方一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/childAndGrandchild";
+ 				document.searchForm.submit();
+ 			}
+			
+ // 			親と孫のみ入力された場合
+			else if(bigCategory && !middleCategory && smallCategory ){
+				//検索させないメソッドに移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/parentAndGrandchild";
+ 				document.searchForm.submit();
+ 			}
+			
+ // 			親カテゴリにのみ値が入っている場合
+else if(bigCategory && !middleCategory && !smallCategory ){
+				//親の前方一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/parent";
+ 				document.searchForm.submit();
+ 			}
+ // 			子カテゴリにのみ値が入っている場合
+				else if(!bigCategory && !middleCategory && smallCategory ){
+				//子の前方一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/child";
+ 				document.searchForm.submit();
+ 			}
+ // 			孫カテゴリにのみ値が入っている場合
+				else if(!bigCategory && !middleCategory && smallCategory ){
+				//孫の前方一致検索メソッドへ移動させる
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/grandChild";
+ 				document.searchForm.submit();
+ 			}
+ 				// 			すべて入っていない場合
+				else{
+ 				//文字とブランドとの検索メソッドに飛ばす
+ 				document.searchForm.action = "${pageContext.request.contextPath}/main/nonCategory";
+ 				document.searchForm.submit();
+ 			}
+ 			
+		}

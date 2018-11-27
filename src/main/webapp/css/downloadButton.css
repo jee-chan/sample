@@ -1,0 +1,99 @@
+/* .btn-info{
+    display: inline-block;
+    border-radius: 50px;
+    position: relative;
+    font-size: 20px;
+    font-style: initial;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #ffffff;
+    transition: .4s;
+} */
+
+.part_line_dl{
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    font-style: initial;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #000;
+    transition: .4s;
+}
+.part_line_dl:hover {
+    color:#3e51fa;
+}
+.part_line_dl:before,.part_line_dl:after{
+  position: absolute;
+  top: 0;
+  content:'';
+  width: 8px;
+  height: 100%;
+  display: inline-block;
+}
+.part_line_dl:before{
+  border-left: solid 1px #3e51fa;
+  border-top: solid 1px #3e51fa;
+  border-bottom: solid 1px #3e51fa;
+  left: 0;
+}
+.part_line_dl:after{
+  content: '';
+  border-top: solid 1px #3e51fa;
+  border-right: solid 1px #3e51fa;
+  border-bottom: solid 1px #3e51fa;
+  right: 0;
+}
+
+
+
+.part_line_cl{
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    font-style: initial;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #000;
+    transition: .4s;
+}
+.part_line_cl:hover {
+    color:#ff7f7f;
+}
+.part_line_cl:before,.part_line_cl:after{
+  position: absolute;
+  top: 0;
+  content:'';
+  width: 8px;
+  height: 100%;
+  display: inline-block;
+}
+.part_line_cl:before{
+  border-left: solid 1px #ff7f7f;
+  border-top: solid 1px #ff7f7f;
+  border-bottom: solid 1px #ff7f7f;
+  left: 0;
+}
+.part_line_cl:after{
+  content: '';
+  border-top: solid 1px #ff7f7f;
+  border-right: solid 1px #ff7f7f;
+  border-bottom: solid 1px #ff7f7f;
+  right: 0;
+}
+
+.centering_cr {
+    padding: 10px;              /* 余白指定 */
+    margin: 10px;
+    text-align:  center;        /* 中央寄せ */
+    /* background-color:  #ddd;    背景色指定 */
+    height: 80px;              /* 高さ指定 */
+}
+
+.centering {
+    padding: 20px;              /* 余白指定 */
+    margin: 20px;
+    text-align:  center;        /* 中央寄せ */
+    /* background-color:  #ddd;    背景色指定 */
+    height: 100px;              /* 高さ指定 */
+}

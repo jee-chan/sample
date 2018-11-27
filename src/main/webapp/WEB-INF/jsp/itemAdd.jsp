@@ -1,0 +1,176 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ include file="./header.jsp" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- css -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mercari.css">
+  <!-- script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<title>商品追加</title>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/main/">Rakus Items</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <div>
+        <ul class="nav navbar-nav navbar-right">
+          <c:if test="${useraccount == null}" >
+          	<li><a id="logout" href="${pageContext.request.contextPath}/userLogin/">Login <i class="fa fa-power-off"></i></a></li>
+          </c:if>
+          <c:if test="${useraccount != null}" >
+          	<li><a id="logout" href="${pageContext.request.contextPath}/logout">Logout <i class="fa fa-power-off"></i></a></li>
+          </c:if>
+        </ul>
+        <p class="navbar-text navbar-right">
+        	<c:if test="${useraccount == null}" >
+          		<span id="loginName">user: Not logged in</span>
+        	</c:if>
+        	<c:if test="${useraccount != null}" >
+          		<span id="loginName">user: <c:out value="${useraccount.username}"/></span>
+        	</c:if>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- details -->
+  <div id="input-main" class="container">
+    <a type="button" class="btn btn-default" href="${pageContext.request.contextPath}/main/"><i class="fa fa-reply"></i> back</a>
+    <h2>Add</h2>
+
+    <!-- add form -->
+    <form:form action="${pageContext.request.contextPath}/addItem/add" modelAttribute="itemForm" method="POST" enctype="multipart/form-data" class="form-horizontal">
+      <!-- name -->
+      <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">name</label>
+        <div class="col-sm-8">
+          <form:input type="text" path="name" class="form-control" id="inputName"/>
+          <form:errors path="name" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- price -->
+      <div class="form-group">
+        <label for="price" class="col-sm-2 control-label">price</label>
+        <div class="col-sm-8">
+          <form:input type="text" path="price" class="form-control" id="price"/>
+          <form:errors path="price" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- category -->
+      <div class="form-group">
+        <label for="category" class="col-sm-2 control-label">category</label>
+        <div class="col-sm-8">
+          <select class="form-control" name="bigCategory">
+            <c:forEach var="bigCategory" items="${bigCategoryList}">
+            	<option><c:out value="${bigCategory}"/></option>
+            </c:forEach>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category" class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+          <select class="form-control" name="middleCategory">
+            <c:forEach var="middleCategory" items="${middleCategoryList}">
+            	<option><c:out value="${middleCategory}"/></option>
+            </c:forEach>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category" class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+          <select class="form-control" name="smallCategory">
+            <c:forEach var="smallCategory" items="${smallCategoryList}">
+            	<option><c:out value="${smallCategory}"/></option>
+            </c:forEach>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category" class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+        <form:errors path="bigCategory" cssStyle="color:red"/>
+        <form:errors path="middleCategory" cssStyle="color:red"/>
+        <form:errors path="smallCategory" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- brand -->
+      <div class="form-group">
+        <label for="brand" class="col-sm-2 control-label">brand</label>
+        <div class="col-sm-8">
+          <form:input type="text" path="brand" id="brand" class="form-control"/>
+          <form:errors path="brand" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- condition -->
+      <div class="form-group">
+        <label for="condition" class="col-sm-2 control-label">condition</label>
+        <div class="col-sm-8">
+          <label for="condition1" class="radio-inline">
+            <input type="radio" name="condition" id="condition1" value="1"/> 1
+          </label>
+          <label for="condition2" class="radio-inline">
+            <input type="radio" name="condition" id="condition2" value="2"/> 2
+          </label>
+          <label for="condition3" class="radio-inline">
+            <input type="radio" name="condition" id="condition3" value="3"/> 3
+          </label>
+          <br><form:errors path="condition" cssStyle="color:red"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category" class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+          <form:errors path="category" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- description -->
+      <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">description</label>
+        <div class="col-sm-8">
+          <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+          <form:errors path="description" cssStyle="color:red"/>
+        </div>
+      </div>
+      <!-- picture -->
+      <div class="form-group">
+        <label for="picture" class="col-sm-2 control-label">picture</label>
+        <div class="col-sm-8">
+          <input name="picture" type="file" accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png" />
+          <p class="fileTypeMassage">ファイル形式はjpg(jpeg),gif,pngのみ対応しています。(png推奨)</p>
+        </div>
+      </div>
+      <!-- submit button -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form:form>
+  </div>
+
+</body>
+</html>
