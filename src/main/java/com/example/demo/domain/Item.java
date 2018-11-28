@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Date;
 
 /**
- * 商品情報を格納するクラス.
+ * 商品情報を格納するドメインクラス.
  * 
  * @author rks
  *
